@@ -4,6 +4,8 @@ Laptop setup and update script for Mac users
 
 ## Installation
 
+**WARNING:** If you want to try this Mac setup script, you should first fork this repository, review the code, and remove things you don’t want or need. Don’t blindly use my settings unless you know what that entails. Use at your own risk!
+
 - Fork this repo
 - Change **"greganswer**" to your GitHub username in the [`update`](./update) script
 - Edit [`dotfiles/.gitconfig`](./dotfiles/.gitconfig) and any other files in the the [`dotfiles`](./dotfiles) directory

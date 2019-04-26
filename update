@@ -19,11 +19,8 @@ source "${__dir}/shared.sh"
 # SUMMARY:     
 # AUTHOR:      Greg Answer <https://github.com/greganswer>
 #
-# TODO: Jetbrains settings (Goland, Rubymine, etc.)
 # TODO: Automatically push changes for this repo
 #     https://github.com/caseyWebb/laptop/tree/master/scripts#L7
-# TODO: Sync packages
-#     https://github.com/caseyWebb/laptop/blob/master/scripts/30-sync-packages.sh
 # ==============================================================================
 main() {
   create_folders
@@ -134,7 +131,7 @@ configure_vs_code() {
 
   header "Configuring VS Code"
   rm "${vs_code_settings_location}"
-  ln -s "${laptop_setup_repo_folder}/dotfiles/vscode.settings.json" "${vs_code_settings_location}"
+  ln -s "${laptop_setup_repo_folder}/settings/vscode.json" "${vs_code_settings_location}"
 }
 
 # Main script entry point
