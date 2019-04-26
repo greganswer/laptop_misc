@@ -1,0 +1,143 @@
+#!/usr/bin/env bash
+
+# When the `--debug` flag is passed to this script, display the file and line
+# number for each command that executed.
+[[ "${*}" =~ --debug ]] && set -o xtrace
+PS4='+ ${BASH_SOURCE}:${LINENO} '
+
+set -o pipefail # `error here | true` will fail if this is enabled.
+set -o errexit # Exit the script when an error occurs.
+
+# Set magic variables for current file & dir
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# The non standard functions in this script can be found in this local source file.
+# shellcheck disable=SC1090
+source "${__dir}/shared.sh"
+
+# ==============================================================================
+# SUMMARY:     
+# AUTHOR:      Greg Answer <https://github.com/greganswer>
+#
+# TODO: Jetbrains settings (Goland, Rubymine, etc.)
+# TODO: Automatically push changes for this repo
+#     https://github.com/caseyWebb/laptop/tree/master/scripts#L7
+# TODO: Sync packages
+#     https://github.com/caseyWebb/laptop/blob/master/scripts/30-sync-packages.sh
+# ==============================================================================
+main() {
+  create_folders
+  install_homebrew
+  update_homebrew_packages
+  download_this_repository
+  symlink_dotfiles
+  setup_zsh
+
+  # Uncomment the line below if you're using VS Code.
+  # configure_vs_code
+
+  # Display how long the script took to run
+  success "Laptop setup completed in $(ps -o etime= -p "$$")"
+
+  # Run Z Shell
+  #  zsh
+}
+
+# ==============================================================================
+# Primary Variables & Functions
+# ==============================================================================
+
+git_hub_username=greganswer
+laptop_setup_repo_folder=~/code/personal/laptop
+
+# Create required folders if they don't exist.
+create_folders() {
+  header "Creating required folders"
+  mkdir -p \
+    ~/code/work \
+    ~/code/personal \
+    ~/code/vendor
+  success "Folders created."
+}
+
+# Install Home Brew if not already installed.
+install_homebrew() {
+  if ! command -v brew > /dev/null 2>&1; then
+    header "Installing homebrew"
+    yes | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
+}
+
+# Update the Homebrew packages if needed
+update_homebrew_packages() {
+  if [[ ! $(brew bundle check) ]]; then
+    cd "${laptop_setup_repo_folder}"
+    header "Restoring homebrew packages from backup"
+    brew bundle install
+    cd -
+  fi
+  success "Brew packages are up to date."
+}
+
+# Clone this repository to the desired directory.
+download_this_repository() {
+  if [ -d "${laptop_setup_repo_folder}" ]; then
+    success "Laptop repo already exists locally."
+    return 0
+  fi
+
+  header "Downloading laptop repo to ${laptop_setup_repo_folder}"
+  git clone "https://github.com/${git_hub_username}/laptop.git" "${laptop_setup_repo_folder}"
+  chmod +x "${laptop_setup_repo_folder}/update" # Make the files executable.
+  success "Repo cloned successfully."
+}
+
+# Sym link dot files
+symlink_dotfiles() {
+  shopt -s dotglob
+  header "Sym linking dot files"
+  for file in dotfiles/*; do
+    [ -e "$file" ] || continue
+    info "Sym linking $(basename "${file}")"
+    ln -s "${file}" ~/$(basename "${file}")
+  done
+  shopt -u dotglob
+}
+
+# Setup Z Shell
+setup_zsh() {
+  header "Setup Z Shell"
+
+  if ! command -v zsh > /dev/null 2>&1; then
+    echo "Setting zsh as login shell..."
+    chsh -s /bin/zsh
+  fi
+
+  if [[ ! -d ~/.oh-my-zsh ]]; then
+    echo "Installing oh-my-zsh..."
+    git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+    success "Oh My Zshell installed successfully."
+  fi
+
+  if [[ ! -a ~/.zshrc ]]; then
+    echo "Configuring zsh..."
+    ln -s "${laptop_setup_repo_folder}/dotfiles/.zshrc" ~/.zshrc
+  fi
+
+  success "Z Shell is setup."
+}
+
+# Configure Microsoft VS Code with the existing settings.
+configure_vs_code() {
+  local vs_code_settings_location
+  vs_code_settings_location=~/Library/Application\ Support/Code/User/settings.json
+
+  header "Configuring VS Code"
+  rm "${vs_code_settings_location}"
+  ln -s "${laptop_setup_repo_folder}/dotfiles/vscode.settings.json" "${vs_code_settings_location}"
+}
+
+# Main script entry point
+# ==============================================================================
+main "$@"
+# ==============================================================================
