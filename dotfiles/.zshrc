@@ -24,4 +24,9 @@ plugins=(
 # Added with the Golang Buffalo auto complete plugin
 autoload -U compinit && compinit
 
+# Node Version Manager setup
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+
 source $ZSH/oh-my-zsh.sh
