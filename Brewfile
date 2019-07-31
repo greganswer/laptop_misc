@@ -40,4 +40,5 @@ cask "slack"
 cask "spotify"
 cask "visual-studio-code"
 cask "vlc"
+cask "whatsapp"
 mas "Magnet", id: 441258766
