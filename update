@@ -69,6 +69,7 @@ main() {
   download_this_repository
   symlink_dotfiles
   setup_zsh
+  gem install bundler
 
   # Uncomment the line below if you're using VS Code.
   # configure_vs_code
