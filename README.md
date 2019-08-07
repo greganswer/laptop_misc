@@ -22,6 +22,11 @@ If you want to add a new package or app, search for the package or app using the
 formula or cask Homebrew links in the [References](#references) section below 
 and add it to the [`Brewfile`](./Brewfile) at the root of this repository.
 
+## Additional Setup
+
+Follow [GitHub's SSH instructions](https://help.github.com/en/articles/connecting-to-github-with-ssh) 
+for SSH setup then edit `~/.ssh/config` to [handle restarts](https://stackoverflow.com/a/41145954)
+
 ## References
 
 ### Homebrew tools
