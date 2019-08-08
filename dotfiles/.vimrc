@@ -1,41 +1,122 @@
-" Plugins
-runtime! macros/matchit.vim " Jump between matching brackets, do/end, etc.
-filetype plugin indent on   " Detect file type and load plugins. Ref: https://vi.stackexchange.com/a/10125
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-" File read/write
-set autoread      " Automatically read the current file when changed outside of Vim
-set autowrite     " Automatically :write before running commands
-set nobackup      " Do not create a backup file on save
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Add plugins here
+" -------------------------------------
+
+" Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
+Plugin 'ctrlpvim/ctrlp.vim' " https://github.com/ctrlpvim/ctrlp.vim
+" Make CtrlP use ag for listing the files. Way faster and no useless files.
+let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
+let g:ctrlp_use_caching = 0
+
+" Extend Vim's command language to add new "verbs" for operating on surroundings like braces
+Plugin 'tpope/vim-surround' " https://github.com/tpope/vim-surround
+
+" Allow plugins to hook into the . repeat command
+Plugin 'tpope/vim-repeat' " https://github.com/tpope/vim-repeat
+
+" Comment out a line or multiple lines, using `gc` ("go comment")
+Plugin 'tpope/vim-commentary' " https://github.com/tpope/vim-commentary
+
+" -------------------------------------
+" End of plugins 
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+
+" ==============================================================================
+" Non-plugin stuff after this line
+" ==============================================================================
+
+" use the space key as our leader. put this near the top of your vimrc
+let mapleader = "\<space>"
+
+" plugins
+runtime! macros/matchit.vim " % matches on html tags, if/else, do/end, etc.
+
+" file read/write
+set autoread      " automatically read the current file when changed outside of vim
+set autowrite     " automatically :write before running commands
+set nobackup      " do not create a backup file on save
 set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
 
-" Tabs
+" tabs
+set autoindent    " copy indent from current line when starting a new line 
+set expandtab
+set shiftround
+set shiftwidth=2
 set smarttab 
 set tabstop=2
-set autoindent    " Copy indent from current line when starting a new line 
-set shiftwidth=2
-set shiftround
-set expandtab
 
-" Display 
-syntax on
-set list listchars=tab:»·,trail:·,nbsp:·
-set display+=lastline " Display as much of the last line as possible
+" display 
+set display+=lastline " display as much of the last line as possible
+set laststatus=2      " always display the status line
 set linebreak
+set list listchars=tab:»·,trail:·,nbsp:·
 set number
 set numberwidth=5
-set ruler            " Show the cursor position all the time
-set laststatus=2     " Always display the status line
-set showcmd          " Display incomplete commands
+set ruler             " show the cursor position all the time
+set showcmd           " display incomplete commands
+set title             " set the terminal title to the name of file being edited
+syntax on
 
-" Scrolling
-set scrolloff=1     " Show at least 1 line above and below cursor 
-set sidescrolloff=5 " Show at least 5 characters on either side of cursor
+" scrolling
+set scrolloff=1       " show at least 1 line above and below cursor 
+set sidescrolloff=5   " show at least 5 characters on either side of cursor
 
-" Autocomplete
-set wildmenu    " Use tab autocomplete in menus
-set complete-=i " Autocomplete based on current and included files
+" autocomplete
+set complete-=i           " autocomplete based on current and included files
+set wildmenu              " use tab autocomplete in menus
+set wildmode=list:longest " complete only up to the point of ambiguity while still showing you what your options are
 
-" Misc
-set backspace=2   " Backspace deletes like most programs in insert mode
+" search
+set hlsearch   " highlight matching words
+set ignorecase " search case insensitive
+set incsearch  " do incremental searching (fuzzy search)
+set smartcase  " search case sensitive only if there is a capital letter in the search expression
+
+" misc
+set backspace=2   " backspace deletes like most programs in insert mode
 set history=100
-set incsearch     " Do incremental searching (Fuzzy search)
+set spell spelllang=en_us
+set complete+=kspell
+
+" keybindings
+
+" map ctrl-a to write the file
+nmap <c-a> :w<cr>
+imap <c-a> <esc>:w<cr>
+
+" bind `q` to close the buffer for help files
+autocmd filetype help nnoremap <buffer> q :q<cr>
+
+" move up and down by visible lines if current line is wrapped
+nmap j gj
+nmap k gk
+
+" split edit your vimrc. type space, v, r in sequence to trigger
+nmap <leader>vr :sp $MYVIMRC<cr>
+
+" source (reload) your vimrc. type space, s, o in sequence to trigger
+nmap <leader>so :source $MYVIMRC<cr>
