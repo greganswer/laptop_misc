@@ -71,6 +71,10 @@ main() {
   setup_zsh
   gem install bundler
 
+  # Extract to database function
+  brew services start postgresql
+  createdb `whoami`
+
   # Uncomment the line below if you're using VS Code.
   # configure_vs_code
 

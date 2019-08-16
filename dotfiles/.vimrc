@@ -4,6 +4,7 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -15,6 +16,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
 Plugin 'ctrlpvim/ctrlp.vim' " https://github.com/ctrlpvim/ctrlp.vim
+
 " Make CtrlP use ag for listing the files. Way faster and no useless files.
 let g:ctrlp_user_command = 'ag %s -l --hidden --nocolor -g ""'
 let g:ctrlp_use_caching = 0
@@ -28,8 +30,11 @@ Plugin 'tpope/vim-repeat' " https://github.com/tpope/vim-repeat
 " Comment out a line or multiple lines, using `gc` ("go comment")
 Plugin 'tpope/vim-commentary' " https://github.com/tpope/vim-commentary
 
+" Vim will draw a nice statusline at the bottom of each window
+Plugin 'vim-airline/vim-airline' " https://github.com/vim-airline/vim-airline
+
 " -------------------------------------
-" End of plugins 
+" End of plugins
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -61,15 +66,25 @@ set autowrite     " automatically :write before running commands
 set nobackup      " do not create a backup file on save
 set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
 
+" Strip trailing white spaces on save
+function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
 " tabs
-set autoindent    " copy indent from current line when starting a new line 
+set autoindent    " copy indent from current line when starting a new line
 set expandtab
 set shiftround
 set shiftwidth=2
-set smarttab 
+set smarttab
 set tabstop=2
 
-" display 
+" display
 set display+=lastline " display as much of the last line as possible
 set laststatus=2      " always display the status line
 set linebreak
@@ -82,7 +97,7 @@ set title             " set the terminal title to the name of file being edited
 syntax on
 
 " scrolling
-set scrolloff=1       " show at least 1 line above and below cursor 
+set scrolloff=1       " show at least 1 line above and below cursor
 set sidescrolloff=5   " show at least 5 characters on either side of cursor
 
 " autocomplete
