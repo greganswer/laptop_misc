@@ -458,6 +458,8 @@
 	<false/>
 	<key>HideMenuBarInFullscreen</key>
 	<false/>
+	<key>HideScrollbar</key>
+	<true/>
 	<key>HideTab</key>
 	<false/>
 	<key>Hotkey</key>
@@ -2088,6 +2090,12 @@
 			</dict>
 		</array>
 	</dict>
+	<key>NoSyncSearchHistory</key>
+	<array>
+		<string>over</string>
+		<string>lkjl</string>
+		<string>nami</string>
+	</array>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>586317210.42618203</real>
 	<key>OpenArrangementAtStartup</key>
@@ -2153,8 +2161,12 @@
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
 	<real>0.27707081330128203</real>
+	<key>StatusBarPosition</key>
+	<integer>1</integer>
 	<key>TabStyleWithAutomaticOption</key>
 	<integer>5</integer>
+	<key>TabViewType</key>
+	<integer>0</integer>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 	<key>WordCharacters</key>

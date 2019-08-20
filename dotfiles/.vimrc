@@ -89,7 +89,7 @@ set display+=lastline " display as much of the last line as possible
 set laststatus=2      " always display the status line
 set linebreak
 set list listchars=tab:»·,trail:·,nbsp:·
-set number
+set relativenumber
 set numberwidth=5
 set ruler             " show the cursor position all the time
 set showcmd           " display incomplete commands
