@@ -33,6 +33,10 @@ Plugin 'tpope/vim-commentary' " https://github.com/tpope/vim-commentary
 " Vim will draw a nice statusline at the bottom of each window
 Plugin 'vim-airline/vim-airline' " https://github.com/vim-airline/vim-airline
 
+" JavaScript plugins
+Plugin 'pangloss/vim-javascript'
+Plugin 'maxmellon/vim-jsx-pretty'
+
 " -------------------------------------
 " End of plugins
 
@@ -59,6 +63,15 @@ let mapleader = "\<space>"
 
 " plugins
 runtime! macros/matchit.vim " % matches on html tags, if/else, do/end, etc.
+
+" Triger `autoread` when files changes on disk
+" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+" Notification after file change
+" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
 " file read/write
 set autoread      " automatically read the current file when changed outside of vim
@@ -116,6 +129,9 @@ set backspace=2   " backspace deletes like most programs in insert mode
 set history=100
 set spell spelllang=en_us
 set complete+=kspell
+
+" automatically leave insert mode after 'updatetime' milliseconds of inaction
+au CursorHoldI * stopinsert
 
 " keybindings
 
