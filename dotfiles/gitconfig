@@ -3,7 +3,7 @@
 	email = greganswer@gmail.com
 	handle = greganswer
 [core]
-	editor = code
+	editor = vim
 	autocrlf = input
 	excludesfile = ~/.gitignore_global
 [filter "lfs"]

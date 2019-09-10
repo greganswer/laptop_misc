@@ -44,7 +44,7 @@ def update_homebrew_packages():
 def symlink_dotfiles():
     """ Symlink the dotfiles into the home directory. """
     click.secho("\nSymlinking dot files", bold=True)
-    for source in glob.glob("./dotfiles/*"):
+    for source in glob.glob(os.path.abspath("./dotfiles/*")):
         destination = os.path.expanduser(f"~/.{source.split('/')[-1]}")
         try:
             os.symlink(source, destination)
