@@ -1,5 +1,16 @@
 # Laptop
 
+- [Laptop](#laptop)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Additional Setup](#additional-setup)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Code of Conduct](#code-of-conduct)
+  - [References](#references)
+    - [Homebrew tools](#homebrew-tools)
+    - [Example setup repos](#example-setup-repos)
+
 Laptop setup and update script for Mac users
 
 ## Installation
@@ -28,10 +39,26 @@ If you want to add a new package or app, search for the package or app using the
 formula or cask Homebrew links in the [References](#references) section below
 and add it to the [`Brewfile`](./Brewfile) at the root of this repository.
 
-## Additional Setup
+### Additional Setup
 
 Follow [GitHub's SSH instructions](https://help.github.com/en/articles/connecting-to-github-with-ssh)
 for SSH setup then edit `~/.ssh/config` to [handle restarts](https://stackoverflow.com/a/41145954)
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/greganswer/laptop.
+This project is intended to be a safe, welcoming space for collaboration, and
+contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org)
+code of conduct.
+
+## License
+
+The project is available as open source under the terms of the
+[MIT License](https://opensource.org/licenses/MIT).
+
+## Code of Conduct
+
+Everyone interacting in this project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](/CODE_OF_CONDUCT.md).
 
 ## References
 
