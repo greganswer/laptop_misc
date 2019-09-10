@@ -6,15 +6,15 @@ Laptop setup and update script for Mac users
 
 **WARNING:** If you want to try this Mac setup script, you should first fork this repository, review the code, and remove things you don’t want or need. Don’t blindly use my settings unless you know what that entails. Use at your own risk!
 
-- Fork this repo
-- Change **"greganswer**" to your GitHub username in the [`update`](./update) script
-- Edit [`dotfiles/.gitconfig`](./dotfiles/.gitconfig) and any other files in the the [`dotfiles`](./dotfiles) directory
-- Edit the [`Brewfile`](./Brewfile) based on desired packages
-- Run `curl https://raw.githubusercontent.com/<your-username>/laptop/master/update | bash` from the command line
+1. Fork this repo
+1. Edit [`dotfiles/gitconfig`](./dotfiles/gitconfig) and any other files in the the [`dotfiles`](./dotfiles) directory
+1. Edit the [`Brewfile`](./Brewfile) based on desired packages
+1. `git clone` your fork
+1. Change into the directory
+1. `chmod +x install.py`
+1. `./install.py`
 
 **NOTE:** No `sudo` required.
-
-**NOTE:** If you don't like curl-ing into bash, you can install git and clone this repo, then run `./update`.
 
 ## Usage
 

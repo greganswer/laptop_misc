@@ -15,7 +15,7 @@ brew "libssh2"
 brew "libusb-compat"
 brew "libyubikey"
 brew "mas"
-brew "macmediakeyforwarder"
+# brew "macmediakeyforwarder" # Not working at the moment.
 brew "openssl"
 brew "postgresql"
 brew "rbenv"
