@@ -102,7 +102,7 @@ def install_bundler():
 def configure_vs_code():
     """ Symlink VS Code settings from this repository. """
     click.secho("\nConfiguring VS Code", bold=True)
-    source = "./settings/vscode.json"
+    source = os.path.abspath("./settings/vscode.json")
     destination = os.path.expanduser(
         "~/Library/Application Support/Code/User/settings.json"
     )
