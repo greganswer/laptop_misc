@@ -24,20 +24,22 @@ If you like everything as it:
 Otherwise:
 
 1. Fork this repo
-2. Edit [`dotfiles/gitconfig`](./dotfiles/gitconfig) and any other files in the the [`dotfiles`](./dotfiles) directory
+2. Edit [`dotfiles/gitconfig`](./dotfiles/gitconfig) and any other files in the [`dotfiles`](./dotfiles) directory
 3. Edit the [`Brewfile`](./Brewfile) based on desired packages
 4. `git clone` your fork
 5. Change into the directory
-6. `chmod +x install.py`
-7. `./install.py`
-
-**NOTE:** This script is idempotent and no `sudo` is required.
-
-## Usage
+6. `chmod +x install.sh`
+7. `./install.sh`
 
 If you want to add a new package or app, search for the package or app using the
 formula or cask Homebrew links in the [References](#references) section below
 and add it to the [`Brewfile`](./Brewfile) at the root of this repository.
+
+## Usage
+
+After you've executed the `install.sh` script, you can execute `tool.py` on subsequent updates.
+
+**NOTE:** This script is idempotent and no `sudo` is required.
 
 ### Additional Setup
 

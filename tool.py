@@ -121,6 +121,15 @@ def setup_local_databases():
         execute_command(["createdb", getpass.getuser()])
 
 
+def update_git_repo():
+    """ Push changes to the GitHub repo if there are any changes. """
+    try:
+        execute_command(["git", "commit", "-am", "'Update laptop settings'"])
+        execute_command(["git", "push"])
+    except subprocess.CalledProcessError:
+        pass
+
+
 # Helpers
 
 
@@ -144,6 +153,7 @@ def main():
     install_bundler()
     setup_local_databases()
     configure_vs_code()
+    update_git_repo()
     duration = str((datetime.now() - start_time)).split(".")[0]
     click.secho(f"\nLaptop setup completed in {duration}", fg="green", bold=True)
 
