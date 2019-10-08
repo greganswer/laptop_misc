@@ -3,5 +3,12 @@
     "files.autoSave": "onFocusChange",
     "git.enableSmartCommit": true,
     "diffEditor.renderSideBySide": false,
-    "markdown.extension.orderedList.marker": "one"
+    "markdown.extension.orderedList.marker": "one",
+    "markdown.extension.toc.levels": "2..6"
+    "markdown.styles": [
+      "Styles.css"
+    ],
+    "[md]": {
+      "editor.tabSize": 2
+    }
 }
