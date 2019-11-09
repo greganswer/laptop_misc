@@ -1,7 +1,10 @@
 {
-    "editor.formatOnSave":true,
-    "files.autoSave": "onFocusChange",
-    "git.enableSmartCommit": true,
-    "diffEditor.renderSideBySide": false,
-    "markdown.extension.orderedList.marker": "one"
+  "diffEditor.renderSideBySide": false,
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.detectIndentation": true,
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "files.autoSave": "onFocusChange",
+  "git.enableSmartCommit": true,
+  "markdown.extension.orderedList.marker": "one"
 }
