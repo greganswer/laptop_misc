@@ -90,6 +90,15 @@ def setup_zsh():
     click.secho("Z Shell setup.", fg="green")
 
 
+def install_ruby():
+    """ Install ruby globally. """
+    try:
+        execute_command(["rbenv", "global"])
+    except subprocess.CalledProcessError:
+        execute_command(["rbenv", "install", "2.6.0"])
+        execute_command(["rbenv", "global", "2.6.0"])
+
+
 def install_bundler():
     """ Install the bundler gem if not present. """
     try:
@@ -97,6 +106,13 @@ def install_bundler():
     except subprocess.CalledProcessError:
         click.secho("\nInstalling bundler", bold=True)
         execute_command(["gem", "install", "bundler"])
+
+
+def configure_vim():
+    """ Setup vim editor. """
+    folder = "~ /.vim/bundle/Vundle.vim"
+    if not os.path.exists(os.path.expanduser(folder)):
+        execute_command(["git", "clone", "https://github.com/VundleVim/Vundle.vim.git", folder])
 
 
 def configure_vs_code():
@@ -150,6 +166,7 @@ def main():
     update_homebrew_packages()
     symlink_dotfiles()
     setup_zsh()
+    install_ruby()
     install_bundler()
     setup_local_databases()
     configure_vs_code()

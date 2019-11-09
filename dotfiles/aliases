@@ -12,7 +12,7 @@ alias malias='edit ~/.oh-my-zsh/custom/aliases.zsh'
 # Docker
 #
 alias dc='docker-compose'
-alias dclogs='dc logs -f'
+alias dclogs='dc logs -f --tail 100'
 alias dcrestart='dc restart'
 alias dcrebuild='dc rm -fsv; dcbuild --no-cache; dcup; dclogs'
 alias dckillandremoveall='dockerkillandremoveall'
