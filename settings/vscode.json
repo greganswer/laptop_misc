@@ -25,5 +25,8 @@
   "ruby.intellisense": "rubyLocate",
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "python.jediEnabled": false
+  "python.jediEnabled": false,
+  "[ruby]": {
+    "editor.defaultFormatter": "misogi.ruby-rubocop"
+  }
 }
